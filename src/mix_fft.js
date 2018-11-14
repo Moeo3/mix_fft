@@ -40,7 +40,7 @@ let mix_fft = function (vector) {
         let lim = 1;
         while (lim < vector.length) lim *= 2;
         for (let i = vector.length; i < lim; ++ i) vector.unshift(0);
-        console.log(vector);
+        //console.log(vector);
         X = fft.inplace_fft(vector);
     } else {
         remain_radix.push(N); sofar_radix.push(1);
@@ -76,7 +76,7 @@ let mix_fft = function (vector) {
     return X;
 }
 
-var signal = [2, 7, 9, 5, 6];
+var signal = [0, 4, 4, 4, 2, 7];
 var p = mix_fft(signal);
 /*
 const eps = 0.0001;

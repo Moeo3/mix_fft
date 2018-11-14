@@ -31,16 +31,17 @@ let fft = function(vector) {
 let inplace_fft = function (vector) {
     let N = vector.length;
     let trailing_zeros = twiddle.countTrailingZeros(N);
+    if (! Array.isArray(vector[0])) {
+        for (let i = 0; i < N; ++ i) vector[i] = [vector[i], 0];
+    }
 
     for (let i = 0; i < N; ++ i) {
         let p = twiddle.reverse(i) >>> (twiddle.INT_BITS - trailing_zeros);
         if (p > i) {
-            let temp = [vector[i], 0];
+            let temp = vector[i];
             vector[i] = vector[p];
             vector[p] = temp;
-        } else {
-            vector[p] = [vector[p], 0];
-        }
+        } 
     }
 
     for (let len = 2; len <= N; len = len * 2) {
