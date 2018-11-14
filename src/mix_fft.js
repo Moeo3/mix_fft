@@ -1,6 +1,4 @@
-let Complex = require('./Complex'),
-    dft = require('./design_from_trash'),
-    fft = require('./fast_fast_tle'),
+let fft = require('./fast_fast_tle'),
     transf = require('./transf');
 
 const max_prime_factor = 37;
