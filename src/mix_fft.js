@@ -76,9 +76,14 @@ let mix_fft = function (vector) {
     return X;
 }
 
+module.exports = {
+    fft: mix_fft
+}
+
+/*
 var signal = [0, 4, 4, 4, 2, 7];
 var p = mix_fft(signal);
-/*
+
 const eps = 0.0001;
 
 for (let i = 0; i < p.length; ++ i) {
@@ -86,8 +91,10 @@ for (let i = 0; i < p.length; ++ i) {
         if (p[i][j] < eps) p[i][j] = 0;
     }
 }
-*/
+
 //console.log(p);
 
 var out = p.map((row) => row.map((ele) => Number((ele + 1e-7).toFixed(2))));
 console.log(out);
+
+*/
