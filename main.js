@@ -23,6 +23,7 @@ let main = function () {
     const matGray = new cv.Mat(image_res, cv.CV_8UC1);
     cv.imshow('test', matGray);
     cv.waitKey();
+    cv.imwrite('./lena_out.png', matGray);
 }
 
 main();

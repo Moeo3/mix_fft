@@ -52,7 +52,6 @@ let inplace_fft = function (vector) {
                 let s = vector[(j * len) + i];
                 vector[(j * len) + i + (len / 2)] = Complex.subtract(s, t);
                 vector[(j * len) + i] = Complex.add(s, t);
-                
             }
         }
     } 

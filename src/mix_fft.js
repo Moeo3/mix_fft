@@ -1,4 +1,4 @@
-let fft = require('./fast_fast_tle'),
+let fft = require('./fft'),
     transf = require('./transf');
 
 const max_prime_factor = 37;
@@ -31,14 +31,13 @@ let factorize = function (N, prime) {
 let mix_fft = function (vector) {
     let X = [], N = vector.length;
     let sofar_radix = [], remain_radix = [];
-
     let prime = get_prime(max_prime_factor);
     let fact = factorize(N, prime);
     if (fact[fact.length - 1] > max_prime_factor) {
+        // if factror bigger than 37, let's use Cooley-Tukey method.
         let lim = 1;
         while (lim < vector.length) lim *= 2;
         for (let i = vector.length; i < lim; ++ i) vector.unshift(0);
-        //console.log(vector);
         X = fft.inplace_fft(vector);
     } else {
         remain_radix.push(N); sofar_radix.push(1);
@@ -46,7 +45,6 @@ let mix_fft = function (vector) {
             sofar_radix[i] = sofar_radix[i - 1] * fact[i - 1];
             remain_radix[i] = remain_radix[i - 1] / fact[i - 1];
         }
-
         // begin permute
         let count = [];
         for (let i = 0; i < N; ++ i) count.push(0);
@@ -63,13 +61,13 @@ let mix_fft = function (vector) {
             }
         }
         X[N - 1] = vector[N - 1];
-        
+        // end permute
+
+        // begin fact.length-D dft
         for (let i = 0; i < fact.length; ++ i) {
-            // i : fact_now
-            //console.log(typeof transf.twiddle_transf);
             transf.twiddle_transf(sofar_radix[i], fact[i], remain_radix[i + 1], X);
-            //console.log(X);
         }
+        // end
     }
     return X;
 }
