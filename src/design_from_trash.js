@@ -14,7 +14,6 @@ let dft = function (vector) {
             X[i] = Complex.add(term, X[i]);
         }
     }
-
     return X;
 }
 
