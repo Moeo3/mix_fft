@@ -32,7 +32,12 @@ let fft_2D = function(image) {
     return res;
 }
 
+module.exports = {
+    fft: fft_2D
+}
+/*
 var img = [[2, 4], [3, 11], [4, 7]];
 var p = fft_2D(img);
 
 console.log(p);
+*/
