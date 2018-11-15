@@ -23,9 +23,10 @@ let fft_2D = function(image) {
     for (let i = 0; i < N; ++ i) {
         res[i] = [];
         for (let j = 0; j < M; ++ j) {
-            res[i][j] = [];
-            res[i][j][0] = row[j][i][0] / (M * N);
-            res[i][j][1] = row[j][i][1] / (M * N);
+            res[i][j] = row[j][i];
+            //res[i][j] = [];
+            //res[i][j][0] = row[j][i][0] / (M * N);
+            //res[i][j][1] = row[j][i][1] / (M * N);
         }
     }
 
@@ -36,7 +37,7 @@ module.exports = {
     fft: fft_2D
 }
 /*
-var img = [[2, 4], [3, 11], [4, 7]];
+var img = [[200, 200], [156, 156]];
 var p = fft_2D(img);
 
 console.log(p);
